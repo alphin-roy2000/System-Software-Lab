@@ -60,12 +60,19 @@ while(1):
         elif(x==5):
                 foldername = input("Enter foldername:" )
                 filename = input("Enter filename: ")
-                d.folderlist[foldername].createfile(filename)
+                if(foldername not in d.folderlist):
+                        print("Folder not in list")
+                else:
+                        d.folderlist[foldername].createfile(filename)
         elif(x==6):
                 print("*****************************")
                 print(f"\nDirectory ->{d.dirname}\n")
                 for folder in d.folderlist:
                         print(f"{folder} <-folder")
+                        open_folder = d.folderlist[folder]
+                        for name in open_folder.filelist:
+                                print(f"    ->{name} <- file")
+
                 for file in d.filelist:
                         print(f"{file} <-file")
                 if(d.folderlist == {} and d.filelist==[]):
